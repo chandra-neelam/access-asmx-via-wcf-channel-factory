@@ -17,7 +17,7 @@ namespace ConsumerApp.Controllers
         public string GetData()
         {
             var client = new WebServiceClient<IProxyInterface>(@"https://localhost:44367/SoapDemo.asmx");
-            var req = new LoginRequest("chandra@gmail.com", "chandra");
+            var req = new Request(new LoginRequest("chandra@gmail.com", "chandra"));
             var result = client.Channel.Login(req);
             return "OK";
         }

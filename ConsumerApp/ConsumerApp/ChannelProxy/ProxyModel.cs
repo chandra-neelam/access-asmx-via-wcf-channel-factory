@@ -4,6 +4,7 @@ using System.ServiceModel;
 
 namespace ConsumerApp.ChannelProxy
 {
+    [MessageContractAttribute(IsWrapped = false)]
     public class Request
     {
         [MessageBodyMemberAttribute(Name = "Login", Namespace = "http://tempuri.org/", Order = 0)]
@@ -19,6 +20,7 @@ namespace ConsumerApp.ChannelProxy
         }
     }
 
+    [MessageContractAttribute(IsWrapped = false)]
     public class Response
     {
         [MessageBodyMemberAttribute(Name = "LoginResponse", Namespace = "http://tempuri.org/", Order = 0)]

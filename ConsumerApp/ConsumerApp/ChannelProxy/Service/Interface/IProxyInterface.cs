@@ -7,6 +7,6 @@ namespace ConsumerApp.ChannelProxy.Service.Interface
     public interface IProxyInterface
     {
         [OperationContractAttribute(Action = "http://tempuri.org/Login", ReplyAction = "*")]
-        LoginResponse Login(LoginRequest request);
+        Response Login(Request request);
     }
 }
