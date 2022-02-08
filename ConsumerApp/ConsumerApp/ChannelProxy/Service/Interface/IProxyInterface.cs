@@ -3,10 +3,10 @@ using System.ServiceModel;
 
 namespace ConsumerApp.ChannelProxy.Service.Interface
 {
-    [ServiceContractAttribute(ConfigurationName = "IProxyInterface")]
+    [ServiceContract(ConfigurationName = "IProxyInterface")]
     public interface IProxyInterface
     {
-        [OperationContractAttribute(Action = "http://tempuri.org/Login", ReplyAction = "*")]
-        Response<LoginResponse> Login(Request<LoginRequest> request);
+        [OperationContract(Action = "http://tempuri.org/Login", ReplyAction = "*")]
+        ResponseWrapper Login(RequestWrapper request);
     }
 }

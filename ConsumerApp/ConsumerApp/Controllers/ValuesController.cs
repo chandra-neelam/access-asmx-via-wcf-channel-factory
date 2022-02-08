@@ -2,6 +2,7 @@
 using ConsumerApp.ChannelProxy.Service.Interface;
 using ConsumerApp.ChannelProxy.Service.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace ConsumerApp.Controllers
 {
@@ -17,9 +18,10 @@ namespace ConsumerApp.Controllers
         public string GetData()
         {
             var client = new WebServiceClient<IProxyInterface>(@"https://localhost:44367/SoapDemo.asmx");
-            var req = new Request<LoginRequest>(new LoginRequest("chandra@gmail.com", "chandra"));
-            var result = client.Channel.Login(req);
-            return "OK";
+            var req = new RequestWrapper(new RequestModel("chandra@gmail.com", "chandra"));
+            var response = client.Channel.Login(req);
+            var result = JsonConvert.SerializeObject(response.LoginResponse.LoginResult);
+            return result;
         }
     }
 }
