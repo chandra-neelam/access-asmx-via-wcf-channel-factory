@@ -1,55 +1,56 @@
 ﻿using ConsumerApp.ChannelProxy.Service.Models;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 
 namespace ConsumerApp.ChannelProxy
 {
     [MessageContractAttribute(IsWrapped = false)]
-    public class Request
+    public class Request<T>
     {
         [MessageBodyMemberAttribute(Name = "Login", Namespace = "http://tempuri.org/", Order = 0)]
-        public LoginRequest Body;
+        public T Body;
 
         public Request()
         {
         }
 
-        public Request(LoginRequest Body)
+        public Request(T Body)
         {
             this.Body = Body;
         }
     }
 
     [MessageContractAttribute(IsWrapped = false)]
-    public class Response
+    public class Response<T>
     {
         [MessageBodyMemberAttribute(Name = "LoginResponse", Namespace = "http://tempuri.org/", Order = 0)]
-        public ResponseBody Body;
+        public ResponseBody<T> Body;
 
         public Response()
         {
         }
 
-        public Response(ResponseBody Body)
+        public Response(ResponseBody<T> Body)
         {
             this.Body = Body;
         }
     }
 
     [DataContractAttribute(Namespace = "http://tempuri.org/")]
-    public partial class ResponseBody
+    public partial class ResponseBody<T>
     {
 
-        [DataMemberAttribute(EmitDefaultValue = false, Order = 0)]
-        public LoginResponse LoginResult;
+        [DataMemberAttribute(Name = "LoginResult", EmitDefaultValue = false, Order = 0)]
+        public T Result;
 
         public ResponseBody()
         {
         }
 
-        public ResponseBody(LoginResponse LoginResult)
+        public ResponseBody(T Result)
         {
-            this.LoginResult = LoginResult;
+            this.Result = Result;
         }
     }
 }
